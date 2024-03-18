@@ -57,6 +57,7 @@ import {
 
 import { TechDocsAddons } from '@backstage/plugin-techdocs-react';
 import { ReportIssue } from '@backstage/plugin-techdocs-module-addons-contrib';
+import { EntityBazaarInfoCard, isBazaarAvailable } from '@backstage/plugin-bazaar';
 
 const techdocsContent = (
   <EntityTechdocsContent>
@@ -137,7 +138,15 @@ const overviewContent = (
     <Grid item md={8} xs={12}>
       <EntityHasSubcomponentsCard variant="gridItem" />
     </Grid>
+    <EntitySwitch>
+      <EntitySwitch.Case if={isBazaarAvailable}>
+        <Grid item sm={6}>
+          <EntityBazaarInfoCard />
+        </Grid>
+      </EntitySwitch.Case>
+    </EntitySwitch>
   </Grid>
+
 );
 
 const serviceEntityPage = (
